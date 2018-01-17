@@ -1,5 +1,14 @@
 # Script for working with the user's text
-text = input("Введите ваш текст ")
+
+class InputText(object):
+    def users_text(self):
+        """
+        Return input
+        user's text
+        """
+        return input("Введите ваш текст ")
+
+text = InputText().users_text()
 
 # Count the length of the text
 print('Длина строки равна: ', len(text))
@@ -38,6 +47,7 @@ reversed_text = reverse(text)
 divided_reversed = ([reversed_text[i:i+25] for i in range(0, len(reversed_text), 25)])
 for a in divided_reversed:
     print(a, '\n')
+
 
 
 
