@@ -1,28 +1,35 @@
-'''Пишем скрипт для работы с текстом пользователя'''
-text = input ("Введите ваш текст ")
+# Script for working with the user's text
+text = input("Введите ваш текст ")
 
-#Считаем длину строки в символах
-print('Длина строки равна: ' + str(text.__len__()))
+# Count the length of the text
+print('Длина строки равна: ', len(text))
 
 string_list = text.split()
 
-#Считаем количество слов в тексте пользователя
-print('Количество слов в тексте равно: ' + str(len(string_list)))
+# Count the number of letters
+print('Количество слов в тексте равно: ', len(string_list))
 
-#Считаем количество чисел в тексте пользователя
+# Count the number of numerals
 num = ([int(i) for i in text if i.isdigit()])
-print('Количество чисел в тексте равно: ' + str(num.__len__()))
+print('Количество чисел в тексте равно: ', len(num))
 
-#Возвращаем исходный код текста по строкам с максимальной длиной 25 символов
+# Divide the text by strings with the length 25 symbols
 def max_string(s, n):
-    return [ text[i:i+n] for i in range(0, len(text), n)]
+    """
+    Divide 's'(user's text)
+    by 'n'(string length)
+    """
+    return [text[i:i+n] for i in range(0, len(text), n)]
 
-print(max_string(text, 25))
+for s in max_string(text, 25):
+    print(s + '\n')
 
-#Возвращаем развернутые строки
+# Reverse the text
 def reverse(text):
     return text[::-1]
 reversed_text = reverse(text)
 
-#Выводим на экран развернутые строки по 25 символов
-print([ reversed_text[i:i+25] for i in range(0, len(reversed_text), 25)])
+# Print reversed strings with the length 25 symbols
+divided_reversed = ([reversed_text[i:i+25] for i in range(0, len(reversed_text), 25)])
+for a in divided_reversed:
+    print(a + '\n')
