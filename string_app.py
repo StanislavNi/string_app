@@ -19,9 +19,10 @@ def max_string(s, n):
 
 print(max_string(text, 25))
 
-#Возвращаем развернутые строки с максимальной длиной 25 символов
+#Возвращаем развернутые строки
 def reverse(text):
     return text[::-1]
+reversed_text = reverse(text)
 
-
-
+#Выводим на экран развернутые строки по 25 символов
+print([ reversed_text[i:i+25] for i in range(0, len(reversed_text), 25)])
