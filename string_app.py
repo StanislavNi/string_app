@@ -3,6 +3,9 @@
 
 
 class InputInterface(object):
+    """
+    Parent class
+    """
     def get_text(self):
         raise NotImplementedError
 
@@ -11,6 +14,10 @@ class InputInterface(object):
 
 
 class InputFileText(InputInterface):
+    """
+    Get text from user's
+    file
+    """
     _filepath = None
 
     def get_text(self):
@@ -25,9 +32,11 @@ class InputFileText(InputInterface):
 
 
 class InputUrlText(InputInterface):
-
+    """
+    Get text from user's
+    URL
+    """
     def get_text(self):
-
         return 'Яндекс.Поиск'
 
     def is_valid(self, users_text):
@@ -38,13 +47,13 @@ class InputUrlText(InputInterface):
 
 
 class ConsoleText(InputInterface):
+    """
+    Get text from user's
+    console
+    """
     users_text = ''
 
     def get_text(self):
-        """
-        Return input
-        user's text
-        """
         return self.users_text
 
     def is_valid(self, users_text):
@@ -54,33 +63,18 @@ class ConsoleText(InputInterface):
 
 user_raw_input = input('Введите команду, строку, путь к файлу или URL')
 
-editor = None
 
-def first_input(self, editor=None):
-    self.editor = editor
-    editor = InputUrlText
-
-def second_input(self, editor=None):
-    self.editor = editor
-    editor = InputFileText
-
-def third_input(self, editor=None):
-    self.editor = editor
-    editor = ConsoleText
-
-input_types = [
-    first_input(),
-    second_input(),
-    third_input()
+input_handlers = [
+    InputFileText(),
+    InputUrlText(),
+    ConsoleText()
 ]
 
-for callable_input_types in input_types:
-    callable_input_types()
-
-if editor.is_valid(user_raw_input):
-    text = editor.get_text()
-else:
-    raise Exception('Невозможно обработать ввод')
+for editor in input_handlers:
+    if editor.is_valid(user_raw_input):
+        text = editor.get_text()
+    else:
+        raise Exception('Невозможно обработать ввод')
 
 # Count the length of the text
 print('Длина строки равна: ', len(text))
