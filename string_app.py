@@ -54,8 +54,29 @@ class ConsoleText(InputInterface):
 
 user_raw_input = input('Введите команду, строку, путь к файлу или URL')
 
-# text = InputText().get_text()
-editor = InputUrlText()
+editor = None
+
+def first_input(self, editor=None):
+    self.editor = editor
+    editor = InputUrlText
+
+def second_input(self, editor=None):
+    self.editor = editor
+    editor = InputFileText
+
+def third_input(self, editor=None):
+    self.editor = editor
+    editor = ConsoleText
+
+input_types = [
+    first_input(),
+    second_input(),
+    third_input()
+]
+
+for callable_input_types in input_types:
+    callable_input_types()
+
 if editor.is_valid(user_raw_input):
     text = editor.get_text()
 else:
