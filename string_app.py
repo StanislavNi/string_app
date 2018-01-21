@@ -73,8 +73,10 @@ input_handlers = [
 for editor in input_handlers:
     if editor.is_valid(user_raw_input):
         text = editor.get_text()
-    else:
-        raise Exception('Невозможно обработать ввод')
+        break
+    
+    #else:
+        #raise Exception('Невозможно обработать ввод')
 
 # Count the length of the text
 print('Длина строки равна: ', len(text))
@@ -100,7 +102,7 @@ def max_string(s, n):
 
 
 for s in max_string(text, 25):
-    print(s, '\n')
+    print(s)
 
 
 def reverse(text):
