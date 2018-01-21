@@ -67,16 +67,13 @@ user_raw_input = input('Введите команду, строку, путь к
 input_handlers = [
     InputFileText(),
     InputUrlText(),
-    ConsoleText()
+    ConsoleText(),
 ]
 
 for editor in input_handlers:
     if editor.is_valid(user_raw_input):
         text = editor.get_text()
         break
-    
-    #else:
-        #raise Exception('Невозможно обработать ввод')
 
 # Count the length of the text
 print('Длина строки равна: ', len(text))
