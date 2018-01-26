@@ -1,13 +1,15 @@
+#Classes for getting user's text
 import requests
 from bs4 import BeautifulSoup
-
 
 class HandlerException(Exception):
     pass
 
+
 class InputInterface(object):
     """
-    Parent class
+    Parent class for
+    user's input classes
     """
     def get_text(self):
         raise NotImplementedError
@@ -28,7 +30,7 @@ class InputFileText(InputInterface):
         return f.read()
 
     def is_valid(self, users_text):
-        if users_text == 'text.txt':
+        if users_text.endswith('.txt'):
             self._filepath = users_text
             return True
         return False
@@ -47,7 +49,7 @@ class InputUrlText(InputInterface):
 
         if r.status_code == requests.codes.ok:
             soup = BeautifulSoup(r.content, 'html.parser')
-            return ''.join(c for c in soup.text)
+            return '\n'+ ''.join(c for c in soup.text)
         else:
             raise HandlerException('Невозможно отобразить страницу')
 
@@ -88,5 +90,4 @@ class InputHandlers():
             if editor.is_valid(user_input):
                 text = editor.get_text()
                 break
-
         return text
